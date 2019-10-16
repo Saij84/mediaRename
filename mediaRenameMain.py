@@ -1,5 +1,5 @@
 from pprint import pprint
-from mediaRename.utils import tree2Json
+from mediaRename.core import tree2Json
 from mediaRename.utils import utils
 
 path = r"C:\NAS\Anime\Avatar"
