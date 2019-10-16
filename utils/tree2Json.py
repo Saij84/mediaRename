@@ -1,24 +1,20 @@
-import os, json, re
-from pprint import pprint
+import os, re
+from mediaRename.constants import constants as CONST
 
-reString = re.compile(r"\[.*?\]")
-inPath = "C:\\NAS\\Anime"
-outFile = os.path.basename(inPath)
 
-def tree2json(path):
-    returnDict = {'oldName': os.path.basename(path)}
+class Tree2json:
+    def __init__(self):
+        self.reString = re.compile((r"\[.*?\]|.DVDRip|{.*?}"))
 
-    if os.path.isdir(path):
-        returnDict['type'] = "directory"
-        returnDict['children'] = [tree2json(os.path.join(path, x)) for x in os.listdir(path)]
-    else:
-        fileExtension = returnDict.get("oldName", "").split(".")[-1]
-        newName = reString.sub("", os.path.basename(path))
-        returnDict['newName'] = newName
-        returnDict['type'] = fileExtension
-    return returnDict
-jDump = tree2json(inPath)
-pprint(jDump)
-
-# with open(os.path.join(inPath, "{}.json".format(outFile)), "w") as jDump2File:
-#     json.dump(jDump, jDump2File)
+    def tree2json(self, inPath):
+        returnDict = {'oldName': os.path.basename(inPath)}
+        if os.path.isdir(inPath):
+            returnDict['type'] = "directory"
+            returnDict['children'] = [self.tree2json(os.path.join(inPath, x)) for x in os.listdir(inPath)]
+        else:
+            fileExtension = returnDict.get("oldName", "").split(".")[-1]
+            if fileExtension in CONST.FILEFORMAT:
+                newName = self.reString.sub("", os.path.basename(inPath))
+                returnDict['newName'] = newName
+                returnDict['type'] = fileExtension
+        return returnDict
