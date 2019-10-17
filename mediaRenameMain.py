@@ -2,7 +2,7 @@ from pprint import pprint
 from mediaRename.core import tree2Json
 from mediaRename.utils import utils
 
-path = r"C:\NAS\Anime\Avatar"
+path = r"C:\NAS\Anime"
 t2j = tree2Json.Tree2json()
 
 data = t2j.tree2json(path)
