@@ -6,7 +6,7 @@ def toFile(outPath, jsonDataDump):
         json.dump(jsonDataDump, jDump2File)
 
 def seperateFileExtension(inputText):
-    noExtensionName = inputText.split(".")[0]
+    noExtensionName = ".".join(inputText.split(".")[:-1])
     fileExtension = inputText.split(".")[-1]
     return noExtensionName, fileExtension
 
