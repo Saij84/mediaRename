@@ -4,7 +4,7 @@ from pprint import pprint
 import json, re
 from mediaRename.utils import utils
 
-jsonFilePath = "C:\\NAS\\Anime\\data.json"
+jsonFilePath = "\\".join([CONST.PATH, CONST.OUTFILE])
 cleanStart = re.compile(CONST.RE_REPLACE)
 arr = list()
 
@@ -13,4 +13,5 @@ with open(jsonFilePath) as json_file:
     # extractData = utils.extractValues(data, arr, "newName")
     # pprint(extractData)
     utils.changeValues(data, "newName")
-    print(data)
+    utils.toFile(inPath=CONST.PATH, dataDump=data)
+    pprint(data)

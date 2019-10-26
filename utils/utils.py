@@ -1,4 +1,5 @@
-import os, json
+import os, json, re
+from mediaRename.constants import constants as CONST
 
 def toFile(inPath, dataDump, outFile="data"):
     with open(os.path.join(inPath, "{}.json".format(outFile)), "w") as jDump2File:
@@ -20,14 +21,14 @@ def extractValues(obj, valueArr, key):
     return valueArr
 
 def changeValues(obj, key):
+    seachString = re.compile(CONST.)
     if isinstance(obj, dict):
         for dictKey, dictVal in obj.items():
             if isinstance(dictVal, (dict, list)):
                 changeValues(dictVal, key)
             elif dictKey == key:
-                #print(dictKey, dictVal)
-                obj[dictKey] = dictVal + "_TEST"
-                print(obj)
+                changedVal = seachString.sub("", dictVal)
+                obj[dictKey] = changedVal
 
     elif isinstance(obj, list):
         for item in obj:
