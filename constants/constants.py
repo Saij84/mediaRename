@@ -3,5 +3,6 @@ OUTFILE = "data.json"
 
 FILEFORMAT = ["avi", "mp3", "mp4", "mov", "mkv", "jpg", "ogm", "srt"]
 
-RE_REMOVE = r"\[.*?\]|.DVDRip|{.*?}"
-RE_REPLACE = r"^ |' '"
+CLEAN_PASSONE = r"\[.*?\]|.DVDRip|{.*?}|\(.*?\)"
+CLEAN_PASSTWO = r"^ |__+|  +"
+CLEAN_PASSTHREE = r" "
