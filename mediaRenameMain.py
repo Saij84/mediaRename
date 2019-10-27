@@ -5,5 +5,6 @@ from mediaRename.constants import constants as CONST
 
 t2j = tree2Json.Tree2json()
 data = t2j.tree2json(CONST.PATH)
+utils.clean(data, "newName", cleanPass="cleanPassOne")
 pprint(data)
 utils.toFile(outPath=CONST.PATH, jsonDataDump=data)

@@ -22,7 +22,7 @@ def extractValues(data, key, valueArr):
             extractValues(item, key, valueArr)
     return valueArr
 
-def cleanNewName(data, key, cleanPass):
+def clean(data, key, cleanPass):
     cleanPassDict = {"cleanPassOne": CONST.CLEAN_PASSONE, "cleanPassTwo": CONST.CLEAN_PASSTWO,
                      "cleanPassThree": CONST.CLEAN_PASSTHREE}
     print(cleanPass)
@@ -30,12 +30,12 @@ def cleanNewName(data, key, cleanPass):
     if isinstance(data, dict):
         for dictKey, dictVal in data.items():
             if isinstance(dictVal, (dict, list)):
-                cleanNewName(dictVal, key, cleanPass)
+                clean(dictVal, key, cleanPass)
             elif dictKey == key:
                 changedVal = seachString.sub("", dictVal)
                 data[dictKey] = changedVal
 
     elif isinstance(data, list):
         for item in data:
-            cleanNewName(item, key, cleanPass)
+            clean(item, key, cleanPass)
 
