@@ -10,7 +10,6 @@ class Tree2json:
             returnDict['children'] = [self.tree2json(os.path.join(inPath, x)) for x in os.listdir(inPath)]
         else:
             seperatedNames = utils.seperateFileExtension(returnDict.get("oldName", ""))
-            print(seperatedNames)
             if seperatedNames[1] in CONST.FILEFORMAT:
                 returnDict['newName'] = seperatedNames[0]
                 returnDict['type'] = seperatedNames[1]

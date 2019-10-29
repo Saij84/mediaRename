@@ -10,22 +10,21 @@ def seperateFileExtension(inputText):
     fileExtension = inputText.split(".")[-1]
     return noExtensionName, fileExtension
 
-def extractValues(data, key, valueArr):
+def extractValuesFromFile(data, key, valueList):
     if isinstance(data, dict):
         for k, v in data.items():
             if isinstance(v, (dict, list)):
-                extractValues(v, key, valueArr)
+                extractValuesFromFile(v, key, valueList)
             elif k == key:
-                valueArr.append(v)
+                valueList.append(v)
     elif isinstance(data, list):
         for item in data:
-            extractValues(item, key, valueArr)
-    return valueArr
+            extractValuesFromFile(item, key, valueList)
+    return valueList
 
 def clean(data, key, cleanPass):
     cleanPassDict = {"cleanPassOne": CONST.CLEAN_PASSONE, "cleanPassTwo": CONST.CLEAN_PASSTWO,
                      "cleanPassThree": CONST.CLEAN_PASSTHREE}
-    print(cleanPass)
     seachString = re.compile(cleanPassDict[cleanPass])
     if isinstance(data, dict):
         for dictKey, dictVal in data.items():
@@ -38,4 +37,3 @@ def clean(data, key, cleanPass):
     elif isinstance(data, list):
         for item in data:
             clean(item, key, cleanPass)
-
