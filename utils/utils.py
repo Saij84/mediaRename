@@ -25,7 +25,7 @@ def extractValuesFromFile(data, key, valueList):
 def clean(data, key, cleanPass):
     cleanPassDict = {"cleanPassOne": CONST.CLEAN_PASSONE, "cleanPassTwo": CONST.CLEAN_PASSTWO,
                      "cleanPassThree": CONST.CLEAN_PASSTHREE}
-    seachString = re.compile(cleanPassDict[cleanPass])
+    seachString = re.compile(cleanPassDict[cleanPass], re.IGNORECASE)
     if isinstance(data, dict):
         for dictKey, dictVal in data.items():
             if isinstance(dictVal, (dict, list)):

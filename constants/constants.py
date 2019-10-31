@@ -3,6 +3,6 @@ OUTFILE = "data.json"
 
 FILEFORMAT = ["avi", "mp3", "mp4", "mov", "mkv", "jpg", "ogm", "srt"]
 
-CLEAN_PASSONE = r"_\[.*?\]|\[.*?\]|_\(.*?\)|\(.*?\)|.DVDRip|{.*?}|divx.+|bluray.+|brrip.+|dvdrip.+|xvid"
-CLEAN_PASSTWO = r"^ |__+|  +"
-CLEAN_PASSTHREE = r" "
+CLEAN_PASSONE = "_\[.*?\]|\[.*?\]|_\(.*?\)|\(.*?\)|{.*?}"
+CLEAN_PASSTWO = "dvdrip.+|xvid.+|divx.+|bluray.+|brrip.+"
+CLEAN_PASSTHREE = r"^ |__+|  +"
