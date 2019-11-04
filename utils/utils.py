@@ -37,3 +37,16 @@ def clean(data, key, cleanPass):
     elif isinstance(data, list):
         for item in data:
             clean(item, key, cleanPass)
+
+def reconstrucPath(data, key, valueList):
+    if isinstance(data, dict):
+        for k, v in data.items():
+            print(k, v)
+    #         if isinstance(v, (dict, list)):
+    #             extractValuesFromFile(v, key, valueList)
+    #         elif k == key:
+    #             valueList.append(v)
+    # elif isinstance(data, list):
+    #     for item in data:
+    #         extractValuesFromFile(item, key, valueList)
+    # return valueList

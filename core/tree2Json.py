@@ -1,4 +1,4 @@
-import os, re
+import os
 from mediaRename.constants import constants as CONST
 from mediaRename.utils import utils
 
@@ -13,4 +13,5 @@ class Tree2json:
             if seperatedNames[1] in CONST.FILEFORMAT:
                 returnDict['newName'] = seperatedNames[0]
                 returnDict['type'] = seperatedNames[1]
+                returnDict['path'] = "\\".join(inPath.split("\\")[:-1])
         return returnDict
