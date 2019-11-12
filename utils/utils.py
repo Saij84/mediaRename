@@ -1,4 +1,5 @@
 import os, json, re
+import collections as coll
 from mediaRename.constants import constants as CONST
 
 def toFile(outPath, jsonDataDump):
@@ -6,25 +7,16 @@ def toFile(outPath, jsonDataDump):
         json.dump(jsonDataDump, jDump2File)
 
 def seperateFileExtension(inputText):
+    seperatedNames = coll.namedtuple("seperatedNames", ["noExtension", "extension"])
     noExtensionName = ".".join(inputText.split(".")[:-1])
     fileExtension = inputText.split(".")[-1]
-    return noExtensionName, fileExtension
-
-def extractValuesFromFile(data, key, valueList):
-    if isinstance(data, dict):
-        for k, v in data.items():
-            if isinstance(v, (dict, list)):
-                extractValuesFromFile(v, key, valueList)
-            elif k == key:
-                valueList.append(v)
-    elif isinstance(data, list):
-        for item in data:
-            extractValuesFromFile(item, key, valueList)
-    return valueList
+    name = seperatedNames(noExtensionName, fileExtension)
+    return name
 
 def clean(data, key, cleanPass):
     cleanPassDict = {"cleanPassOne": CONST.CLEAN_PASSONE, "cleanPassTwo": CONST.CLEAN_PASSTWO,
                      "cleanPassThree": CONST.CLEAN_PASSTHREE}
+
     seachString = re.compile(cleanPassDict[cleanPass], re.IGNORECASE)
     if isinstance(data, dict):
         for dictKey, dictVal in data.items():
@@ -33,20 +25,6 @@ def clean(data, key, cleanPass):
             elif dictKey == key:
                 changedVal = seachString.sub("", dictVal)
                 data[dictKey] = changedVal
-
     elif isinstance(data, list):
         for item in data:
             clean(item, key, cleanPass)
-
-def reconstrucPath(data, key, valueList):
-    if isinstance(data, dict):
-        for k, v in data.items():
-            print(k, v)
-    #         if isinstance(v, (dict, list)):
-    #             extractValuesFromFile(v, key, valueList)
-    #         elif k == key:
-    #             valueList.append(v)
-    # elif isinstance(data, list):
-    #     for item in data:
-    #         extractValuesFromFile(item, key, valueList)
-    # return valueList

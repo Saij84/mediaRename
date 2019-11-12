@@ -1,17 +1,22 @@
-import os
+import os, collections
 from mediaRename.constants import constants as CONST
 from mediaRename.utils import utils
 
 class Tree2json:
+    def __init__(self):
+        self.returnDict = {'files': []}
+
     def tree2json(self, inPath):
-        returnDict = {'oldName': os.path.basename(inPath)}
         if os.path.isdir(inPath):
-            returnDict['type'] = "directory"
-            returnDict['children'] = [self.tree2json(os.path.join(inPath, x)) for x in os.listdir(inPath)]
+            for x in os.listdir(inPath):
+                self.tree2json(os.path.join(inPath, x))
         else:
-            seperatedNames = utils.seperateFileExtension(returnDict.get("oldName", ""))
-            if seperatedNames[1] in CONST.FILEFORMAT:
-                returnDict['newName'] = seperatedNames[0]
-                returnDict['type'] = seperatedNames[1]
-                returnDict['path'] = "\\".join(inPath.split("\\")[:-1])
-        return returnDict
+            filename = utils.seperateFileExtension(os.path.basename(inPath))
+            if filename.extension in CONST.FILEFORMAT:
+                self.returnDict['files'].append({
+                    'oldName': os.path.basename(inPath),
+                    'newName': filename.noExtension,
+                    'type': filename.extension,
+                    'path': "\\".join(inPath.split("\\")[:-1])}
+                )
+        return self.returnDict

@@ -1,13 +1,10 @@
-from mediaRename.constants import constants as CONST
 from pprint import pprint
-import json, re, os
+from mediaRename.core import tree2Json
 from mediaRename.utils import utils
+from mediaRename.constants import constants as CONST
 
-path = os.path.join(CONST.PATH, CONST.OUTFILE)
-
-# with open(path) as json_file:
-#     data = json.load(json_file)
-#     localData = utils.reconstrucPath(data, key="")
-#     pprint(localData)
-
-print(help(json))
+t2j = tree2Json.Tree2json()
+data = t2j.tree2json(CONST.PATH)
+utils.clean(data, "newName", cleanPass="cleanPassOne")
+#utils.clean(data, "newName", cleanPass="cleanPassTwo")
+utils.toFile(outPath=CONST.PATH, jsonDataDump=data)
