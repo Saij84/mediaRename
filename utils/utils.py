@@ -1,10 +1,6 @@
-import os, json, re
 import collections as coll
-from mediaRename.constants import constants as CONST
+import os
 
-def toFile(outPath, jsonDataDump):
-    with open(os.path.join(outPath, "data.json"), "w") as jDump2File:
-        json.dump(jsonDataDump, jDump2File)
 
 def seperateFileExtension(inputText):
     seperatedNames = coll.namedtuple("seperatedNames", ["noExtension", "extension"])
@@ -13,18 +9,16 @@ def seperateFileExtension(inputText):
     name = seperatedNames(noExtensionName, fileExtension)
     return name
 
-def clean(data, key, cleanPass):
-    cleanPassDict = {"cleanPassOne": CONST.CLEAN_PASSONE, "cleanPassTwo": CONST.CLEAN_PASSTWO,
-                     "cleanPassThree": CONST.CLEAN_PASSTHREE}
 
-    seachString = re.compile(cleanPassDict[cleanPass], re.IGNORECASE)
-    if isinstance(data, dict):
-        for dictKey, dictVal in data.items():
-            if isinstance(dictVal, (dict, list)):
-                clean(dictVal, key, cleanPass)
-            elif dictKey == key:
-                changedVal = seachString.sub("", dictVal)
-                data[dictKey] = changedVal
-    elif isinstance(data, list):
-        for item in data:
-            clean(item, key, cleanPass)
+def returnPaths(jsonObj):
+    assert isinstance(jsonObj, dict), "In object not an dict"
+
+    paths = coll.namedtuple("paths", ["oldPath", "newPath"])
+    oldName = jsonObj.get("oldName")
+    newName = jsonObj.get("newName")
+    extension = jsonObj.get("extension")
+    path = jsonObj.get("path")
+
+    paths = paths(os.path.join(path, oldName),
+                  os.path.join(path, newName) + "." + extension)
+    return paths

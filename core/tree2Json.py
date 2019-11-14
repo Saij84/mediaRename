@@ -1,6 +1,7 @@
-import os, collections
+import os
 from mediaRename.constants import constants as CONST
 from mediaRename.utils import utils
+
 
 class Tree2json:
     def __init__(self):
@@ -16,7 +17,7 @@ class Tree2json:
                 self.returnDict['files'].append({
                     'oldName': os.path.basename(inPath),
                     'newName': filename.noExtension,
-                    'type': filename.extension,
+                    'extension': filename.extension,
                     'path': "\\".join(inPath.split("\\")[:-1])}
                 )
         return self.returnDict
