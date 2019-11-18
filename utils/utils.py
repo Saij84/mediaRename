@@ -3,15 +3,15 @@ import os
 
 
 def seperateFileExtension(inputText):
-    seperatedNames = coll.namedtuple("seperatedNames", ["noExtension", "extension"])
+    separatedNames = coll.namedtuple("separatedNames", ["noExtension", "extension"])
     noExtensionName = ".".join(inputText.split(".")[:-1])
     fileExtension = inputText.split(".")[-1]
-    name = seperatedNames(noExtensionName, fileExtension)
+    name = separatedNames(noExtensionName, fileExtension)
     return name
 
 
 def returnPaths(jsonObj):
-    assert isinstance(jsonObj, dict), "In object not an dict"
+    assert isinstance(jsonObj, dict), "In object not a dict"
 
     paths = coll.namedtuple("paths", ["oldPath", "newPath"])
     oldName = jsonObj.get("oldName")
