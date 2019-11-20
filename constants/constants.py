@@ -7,4 +7,4 @@ CLEAN_PASSONE = "_\[.*?\]|\[.*?\]|\[.*?\]_|_\(.*?\)|\(.*?\)|\{.*?\}|dvdrip.+|xvi
 CLEAN_PASSTWO = "^ |__+|  +| *$"
 CLEAN_PASSTHREE = "^_|_$|\.+$"
 
-CLEAN_REPLACE = "\.?"
+CLEAN_REPLACE = "\.| "
