@@ -1,13 +1,13 @@
 import os
-from mediaRename.core import tree2Json
+from mediaRename.core import input
 from mediaRename.core import output as out
 from mediaRename.utils import utils
 from mediaRename.core import clean as cln
 from mediaRename.constants import constants as CONST
 import json
 
-t2j = tree2Json.Tree2json()
-data = t2j.tree2json(CONST.PATH)
+t2j = input.Tree2Data()
+data = t2j.tree2Data(CONST.PATH)
 jsonNodes = data.get("files")
 
 cln.cleanReplace(data, cleanPass="cleanPassOne")

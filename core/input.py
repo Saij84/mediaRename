@@ -3,14 +3,14 @@ from mediaRename.constants import constants as CONST
 from mediaRename.utils import utils
 
 
-class Tree2json:
+class Tree2Data:
     def __init__(self):
         self.returnDict = {'files': []}
 
-    def tree2json(self, inPath):
+    def tree2Data(self, inPath):
         if os.path.isdir(inPath):
             for x in os.listdir(inPath):
-                self.tree2json(os.path.join(inPath, x))
+                self.tree2Data(os.path.join(inPath, x))
         else:
             filename = utils.seperateFileExtension(os.path.basename(inPath))
             if filename.extension in CONST.FILEFORMAT:

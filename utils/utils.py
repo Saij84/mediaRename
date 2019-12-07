@@ -17,7 +17,7 @@ def seperateFileExtension(inputText):
 
 def returnPaths(jsonObj):
     """
-    takes a json dict and returns new and old paths
+    takes a json dict with new/old and path, construct paths and return result
     :param jsonObj: json dict
     :return: tuple of paths (oldPath, newPath)
     """
