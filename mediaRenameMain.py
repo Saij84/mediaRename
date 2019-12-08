@@ -8,13 +8,8 @@ import json
 
 t2j = input.Tree2Data()
 data = t2j.tree2Data(CONST.PATH)
-jsonNodes = data.get("files")
 
-cln.cleanReplace(data, cleanPass="cleanPassOne")
-cln.cleanReplace(data, cleanPass="cleanPassTwo")
-cln.cleanReplace(data, cleanPass="cleanPassThree")
-cln.cleanReplace(data, cleanPass="cleanPassFinal", replaceSTR="_")
-
+cln.cleanReplace(data)
 out.toFile(outPath=CONST.PATH, jsonDataDump=data)
 
 with open(os.path.join(CONST.PATH, CONST.OUTFILE), "r") as jsonFile:

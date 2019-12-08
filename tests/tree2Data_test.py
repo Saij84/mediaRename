@@ -29,7 +29,7 @@ class TestTree2Data(unittest.TestCase):
     def test_tree2Data(self):
         for dictObj in self.data["files"]:
             path = utils.returnPaths(dictObj)
-            self.assertEqual(os.path.isfile(path.newPath), True, "{} Path does not exists".format(path))
+            self.assertEqual(os.path.isfile(path.oldPath), True, "{} Path does not exists".format(path))
             self.assertFalse(os.path.isfile(self.dummyPath))
 
     def tearDown(self):

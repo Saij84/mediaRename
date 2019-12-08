@@ -8,6 +8,11 @@ class Tree2Data:
         self.returnDict = {'files': []}
 
     def tree2Data(self, inPath):
+        """
+        Takes a root path, traverse the folder tree and store the data in json form
+        :param inPath: path i.e. 'c:\\Foo'
+        :return: dict
+        """
         if os.path.isdir(inPath):
             for x in os.listdir(inPath):
                 self.tree2Data(os.path.join(inPath, x))
