@@ -13,7 +13,7 @@ def toFile(jsonDataDump):
 
 def renameFiles(srcPath, trgPath):
     """
-    Rename files
+    Rename files, it is here in case it needs to be extended
     :param srcPath: path
     :param trgPath: path
     :return: None
