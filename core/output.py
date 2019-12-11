@@ -1,15 +1,14 @@
 import json
 import os
+from mediaRename.constants import constants as CONST
 
-
-def toFile(outPath, jsonDataDump):
+def toFile(jsonDataDump):
     """
     Write to json file
-    :param outPath: path
-    :param jsonDataDump: data
+    :param jsonDataDump: jason data
     :return: None
     """
-    with open(os.path.join(outPath, "data.json"), "w") as jDump2File:
+    with open(os.path.join(CONST.INPATH, CONST.OUTFILE), "w") as jDump2File:
         json.dump(jsonDataDump, jDump2File)
 
 def renameFiles(srcPath, trgPath):

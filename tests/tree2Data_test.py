@@ -1,7 +1,10 @@
 import os
 import shutil
 import unittest
+import json
 from mediaRename.core.input import Tree2Data as t2d
+from mediaRename.core import clean
+from mediaRename.core import output
 from mediaRename.utils import utils
 
 class TestTree2Data(unittest.TestCase):
@@ -10,7 +13,7 @@ class TestTree2Data(unittest.TestCase):
         self.rootPath = "C:\\testCase"
         self.folders = ["mainFloder1", "mainFloder2", "mainFloder3"]
         self.subFolders = ["subfolder1", "subfolder2"]
-        self.files = ["test_file[2010]_movie1.avi", "test_file[2010]_movie2.mkv"]
+        self.files = ["test.file[2010]_movie1.avi", "test_file[2010] movie2.mkv"]
         self.tree2data = t2d()
         self.dummyPath = "C:\\testCase\\mainFloder1\\subfolder2\\test_file[2010]_movie5.avi"
 
@@ -31,6 +34,13 @@ class TestTree2Data(unittest.TestCase):
             path = utils.returnPaths(dictObj)
             self.assertEqual(os.path.isfile(path.oldPath), True, "{} Path does not exists".format(path))
             self.assertFalse(os.path.isfile(self.dummyPath))
+
+    def test_cleanReplace(self):
+        cleanData = clean.cleanReplace(self.data)
+        print(cleanData)
+
+        for dataNode in cleanData:
+            self.assertTrue(dataNode["newName"] in ["test_file_movie1.avi", "test_file_movie2.mkv"])
 
     def tearDown(self):
         if self.rootPath:

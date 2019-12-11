@@ -6,13 +6,14 @@ from mediaRename.core import clean as cln
 from mediaRename.constants import constants as CONST
 import json
 
+
 t2j = input.Tree2Data()
-data = t2j.tree2Data(CONST.PATH)
+data = t2j.tree2Data(CONST.INPATH)
 
 cln.cleanReplace(data)
-out.toFile(outPath=CONST.PATH, jsonDataDump=data)
+out.toFile(jsonDataDump=data)
 
-with open(os.path.join(CONST.PATH, CONST.OUTFILE), "r") as jsonFile:
+with open(os.path.join(CONST.INPATH, CONST.OUTFILE), "r") as jsonFile:
     jsonData = json.load(jsonFile)
 
 for i in jsonData.get("files"):

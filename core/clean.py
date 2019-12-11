@@ -10,7 +10,7 @@ def cleanReplace(data):
     """
     dataIn = data["files"]
 
-    # [(regX, replaceSTR)]
+    # (regX, replaceSTR)
     cleanPasses = [(CONST.CLEAN_PASSONE, ""), (CONST.CLEAN_PASSTWO, ""),
                    (CONST.CLEAN_PASSTHREE, ""), (CONST.CLEAN_REPLACE, "_")]
 
