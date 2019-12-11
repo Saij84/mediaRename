@@ -1,4 +1,4 @@
-INPATH = "C:\\NAS"
+INPATH = "C:\\FOO"
 OUTFILE = "data.json"
 
 FILEFORMAT = ["avi", "mp3", "mp4", "mov", "mkv", "ogm"]
